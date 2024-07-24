@@ -1,0 +1,8 @@
+This software (henceforth called "kernel") and all of its components are provided under:
+    SPDX-License-Identifier: GPL-3.0-or-later
+
+This kernel is licensed under the GNU General Public License version 3 or later, as outlined in the file:
+    LICENSE
+
+All files in this directory and every subdirectory and all binaries
+produced from said files are subject to this COPYING file.
