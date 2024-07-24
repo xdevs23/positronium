@@ -5,6 +5,10 @@ POST_BUILD := $(POST_BUILD_DIR)/.make
 EFI_ESP_OUT := $(POST_BUILD_DIR)/esp
 EFI_LOADER_OUT := $(EFI_ESP_OUT)/EFI/BOOT/BOOTX64.EFI
 
+.PHONY: $(OS_KERNEL_OUT)
+$(OS_KERNEL_OUT):
+	cargo build --target x86_64-unknown-none --profile dev
+
 $(POST_BUILD):
 	mkdir -p $(POST_BUILD_DIR)
 	@touch $@
@@ -68,7 +72,7 @@ start-x86_64: $(OVMF_DEST) $(EFI_LOADER_OUT) $(INSTALLED_KERNEL)
 		-d int,cpu_reset,unimp
 
 .PHONY: debug-x86_64
-debug-x86_64: | start-x86_64
+debug-x86_64: | $(OS_KERNEL_OUT) start-x86_64
 
 EFI_ROOT_DIR ?= /efi
 EFI_INSTALL_DIR ?= $(EFI_ROOT_DIR)/EFI/os
