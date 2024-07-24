@@ -16,49 +16,49 @@ PHDRS
 
 SECTIONS
 {
-	. = load_addr + SIZEOF_HEADERS;
+    . = load_addr + SIZEOF_HEADERS;
 
-	kernel_image_start = .;
+    kernel_image_start = .;
 
-	.text :
-	{
-		section_text_start = .;
-		*(.text .text.*)
-		section_text_end = .;
-	} :text
+    .text :
+    {
+        section_text_start = .;
+        *(.text .text.*)
+        section_text_end = .;
+    } :text
 
-	.rodata ALIGN(CONSTANT(MAXPAGESIZE)) :
-	{
-		section_rodata_start = .;
-		*(.rodata)
-		*(.rodata.*)
-		KEEP(*(.injected_data))
-		section_rodata_end = .;
-	} :rodata
+    .rodata ALIGN(CONSTANT(MAXPAGESIZE)) :
+    {
+        section_rodata_start = .;
+        *(.rodata)
+        *(.rodata.*)
+        KEEP(*(.injected_data))
+        section_rodata_end = .;
+    } :rodata
 
-	.data ALIGN(CONSTANT(MAXPAGESIZE)) :
-	{
-		section_data_start = .;
-		*(.data)
-		*(.data.*)
+    .data ALIGN(CONSTANT(MAXPAGESIZE)) :
+    {
+        section_data_start = .;
+        *(.data)
+        *(.data.*)
 
         KEEP(*(.requests_start_marker))
         KEEP(*(.requests))
         KEEP(*(.requests_end_marker))
-		section_data_end = .;
-	} :data
+        section_data_end = .;
+    } :data
 
     .dynamic : {
         *(.dynamic)
     } :data :dynamic
 
-	.bss ALIGN(CONSTANT(MAXPAGESIZE)) :
-	{
-		section_bss_start = .;
-		*(COMMON)
-		*(.bss .bss.*)
-		section_bss_end = .;
-	} :data
+    .bss ALIGN(CONSTANT(MAXPAGESIZE)) :
+    {
+        section_bss_start = .;
+        *(COMMON)
+        *(.bss .bss.*)
+        section_bss_end = .;
+    } :data
 
     /DISCARD/ : {
         *(.eh_frame*)
@@ -66,5 +66,5 @@ SECTIONS
         *(.interp)
     }
 
-	kernel_image_end = .;
+    kernel_image_end = .;
 }
