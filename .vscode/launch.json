@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach QEMU x86-64 (LLDB)",
+            "type": "lldb",
+            "request": "custom",
+            "targetCreateCommands": [
+                "platform select remote-gdb-server",
+                "target stop-hook add -o 'script for thread in lldb.process: lldb.process.Continue() if thread.GetStopReason() == 5 else None'",
+                "target create ${workspaceFolder}/target/x86_64-unknown-none/debug/positronium",
+                "target modules load --file ${workspaceFolder}/target/x86_64-unknown-none/debug/positronium -s 0xffffffff80000000",
+            ],
+            "processCreateCommands": [
+                "gdb-remote localhost:9120"
+            ]
+        },
+        {
+            "type": "gdb",
+            "request": "attach",
+            "name": "Attach QEMU x86-64 (GDB)",
+            "executable": "${workspaceFolder}/target/x86_64-unknown-none/debug/positronium",
+            "target": ":9120",
+            "remote": true,
+            "cwd": "${workspaceRoot}",
+            "valuesFormatting": "parseText"
+        }
+    ]
+}

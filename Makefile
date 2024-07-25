@@ -69,6 +69,8 @@ start-x86_64: $(OVMF_DEST) $(EFI_LOADER_OUT) $(INSTALLED_KERNEL)
 		-vga std \
 		-boot c \
 		-nodefaults \
+		-gdb tcp::9120 \
+		-S \
 		-d int,cpu_reset,unimp
 
 .PHONY: debug-x86_64
