@@ -3,6 +3,8 @@
 
 use core::arch::asm;
 
+use kernel_io_defs::SerialController;
+use kernel_io_serial::create_serial;
 use limine::BaseRevision;
 
 #[used]
@@ -12,6 +14,10 @@ static BASE_REVISION: BaseRevision = BaseRevision::new();
 #[no_mangle]
 unsafe extern "C" fn native_x86_64_start() -> ! {
     assert!(BASE_REVISION.is_supported());
+
+    let serial = create_serial();
+    _ = serial.write_string("\nPositronium Kernel\n");
+
     halt()
 }
 

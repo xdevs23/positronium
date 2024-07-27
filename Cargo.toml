@@ -1,12 +1,22 @@
 [workspace]
 
+[workspace.package]
+version = "0.0.0"
+
+[workspace.dependencies]
+kernel-io-defs = { path = "src/io/defs" }
+kernel-io-serial = { path = "src/io/serial" }
+x86_64 = "=0.15.1"
+
 [package]
 name = "positronium"
-version = "0.0.0"
-edition = "2018"
+version.workspace = true
+edition = "2021"
 
 [dependencies]
 limine = "0.2.0"
+kernel-io-serial.workspace = true
+kernel-io-defs.workspace = true
 
 [profile.dev]
 panic = "abort"

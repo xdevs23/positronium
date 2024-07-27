@@ -69,6 +69,29 @@ start-x86_64: $(OVMF_DEST) $(EFI_LOADER_OUT) $(INSTALLED_KERNEL)
 		-vga std \
 		-boot c \
 		-nodefaults \
+		-d int,cpu_reset,unimp
+
+.PHONY: debug-x86_64
+debug-x86_64: $(OVMF_DEST) $(EFI_LOADER_OUT) $(INSTALLED_KERNEL)
+	@echo "Launching x86_64 emulator..."
+	@qemu-system-x86_64 \
+		-no-reboot \
+		-no-shutdown \
+		-M q35 \
+		-M accel=kvm:tcg \
+		-cpu host \
+		-smp sockets=1,dies=1,cores=4,threads=2 \
+		-object memory-backend-file,id=pc.ram,size=512M,mem-path=/dev/shm/qemu-positronium-ram,share=on \
+		-machine memory-backend=pc.ram \
+		-drive if=pflash,format=raw,index=0,file=$(OVMF_DEST) \
+		-drive file=fat:rw:$(EFI_ESP_OUT) \
+		-device pci-testdev,id=testdev000,bus=pcie.0,addr=0x4 \
+		-net none \
+		-serial stdio \
+		-parallel none \
+		-vga std \
+		-boot c \
+		-nodefaults \
 		-gdb tcp::9120 \
 		-S \
 		-d int,cpu_reset,unimp

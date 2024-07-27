@@ -22,7 +22,7 @@
             }
         },
         {
-            "label": "QEMU x86_64",
+            "label": "Start QEMU x86_64",
             "type": "process",
             "command": "make",
             "dependsOn": "Build x86_64",
@@ -30,6 +30,18 @@
             "isBuildCommand": false,
             "args": [
                 "start-x86_64"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Debug QEMU x86_64",
+            "type": "process",
+            "command": "make",
+            "dependsOn": "Build x86_64",
+            "isBackground": true,
+            "isBuildCommand": false,
+            "args": [
+                "debug-x86_64"
             ],
             "problemMatcher": []
         }
