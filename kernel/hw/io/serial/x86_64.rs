@@ -1,7 +1,7 @@
 
 use core::fmt;
 
-use kernel_io_defs::{IOPortRead, IOPortReadWrite, IOPortWrite, SerialController};
+use kernel_hw_io::{IOPortRead, IOPortReadWrite, IOPortWrite, SerialController};
 use x86_64::instructions;
 
 const COM1: u16 = 0x3f8; // COM1
@@ -52,7 +52,6 @@ impl IOPortRead for LineStatePort {
     }
 }
 
-
 pub(crate) struct Serial {
     did_init: bool,
 }
@@ -60,15 +59,6 @@ pub(crate) struct Serial {
 impl Serial {
     fn is_transmit_empty() -> bool {
         (unsafe { LineStatePort::read().unwrap() & 0x20 }) != 0
-    }
-
-    fn has_received() -> bool {
-        (unsafe { LineStatePort::read().unwrap() & 1 }) != 0
-    }
-
-    fn read() -> Result<u8, ()> {
-        while !Self::has_received() {};
-        unsafe { DataPort::read() }
     }
 
     fn write(val: u8) -> Result<(), ()> {

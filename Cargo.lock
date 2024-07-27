@@ -15,14 +15,39 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b048fb63fd8b5923fc5aa7b340d8e156aec7ec02f0c78fa8a6ddc2613f6f71de"
 
 [[package]]
-name = "kernel-io-defs"
+name = "kernel"
+version = "0.0.0"
+dependencies = [
+ "kernel-hw-cpu",
+ "kernel-hw-io",
+ "kernel-hw-io-serial",
+]
+
+[[package]]
+name = "kernel-boot-protocol"
+version = "0.0.0"
+dependencies = [
+ "kernel",
+ "limine",
+ "x86_64",
+]
+
+[[package]]
+name = "kernel-hw-cpu"
+version = "0.0.0"
+dependencies = [
+ "x86_64",
+]
+
+[[package]]
+name = "kernel-hw-io"
 version = "0.0.0"
 
 [[package]]
-name = "kernel-io-serial"
+name = "kernel-hw-io-serial"
 version = "0.0.0"
 dependencies = [
- "kernel-io-defs",
+ "kernel-hw-io",
  "x86_64",
 ]
 
@@ -33,15 +58,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "846c87e24d089e8717a61098cba72b378e3525c46a87cf75b71352dcf668e68c"
 dependencies = [
  "bitflags",
-]
-
-[[package]]
-name = "positronium"
-version = "0.0.0"
-dependencies = [
- "kernel-io-defs",
- "kernel-io-serial",
- "limine",
 ]
 
 [[package]]

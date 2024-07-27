@@ -1,0 +1,13 @@
+[package]
+name = "kernel"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["rlib"]
+path = "lib.rs"
+
+[dependencies]
+kernel-hw-cpu.workspace = true
+kernel-hw-io-serial.workspace = true
+kernel-hw-io.workspace = true

@@ -1,0 +1,15 @@
+[package]
+name = "kernel-boot-protocol"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["rlib"]
+path = "lib.rs"
+
+[dependencies]
+kernel.workspace = true
+
+[target.'cfg(target_arch = "x86_64")'.dependencies]
+x86_64.workspace = true
+limine.workspace = true

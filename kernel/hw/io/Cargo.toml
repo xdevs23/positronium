@@ -1,9 +1,9 @@
 [package]
-name = "kernel-io-defs"
+name = "kernel-hw-io"
 version.workspace = true
+edition.workspace = true
 
 [lib]
 crate-type = ["rlib"]
 path = "lib.rs"
-edition = "2021"
 

@@ -1,22 +1,18 @@
 [workspace]
+members = ["kernel/boot/protocol"]
 
 [workspace.package]
 version = "0.0.0"
-
-[workspace.dependencies]
-kernel-io-defs = { path = "src/io/defs" }
-kernel-io-serial = { path = "src/io/serial" }
-x86_64 = "=0.15.1"
-
-[package]
-name = "positronium"
-version.workspace = true
 edition = "2021"
 
-[dependencies]
-limine = "0.2.0"
-kernel-io-serial.workspace = true
-kernel-io-defs.workspace = true
+[workspace.dependencies]
+kernel.path = "kernel"
+kernel-boot-protocol.path = "kernel/boot/protocol"
+kernel-hw-cpu.path = "kernel/hw/cpu"
+kernel-hw-io.path = "kernel/hw/io"
+kernel-hw-io-serial.path = "kernel/hw/io/serial"
+x86_64 = "=0.15.1"
+limine = "=0.2.0"
 
 [profile.dev]
 panic = "abort"
