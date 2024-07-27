@@ -15,5 +15,7 @@ pub fn kernel_main() -> ! {
 
 #[panic_handler]
 fn rust_panic(_info: &core::panic::PanicInfo) -> ! {
+    let serial = create_serial();
+    _ = serial.write_string("Panic\n");
     create_cpu().halt_execution()
 }

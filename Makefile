@@ -1,5 +1,5 @@
 OUT_DIR = out
-OS_KERNEL_OUT := target/x86_64-unknown-none/debug/positronium
+OS_KERNEL_OUT := target/x86_64-unknown-none/debug/kernel
 POST_BUILD_DIR := $(OUT_DIR)/post_build
 POST_BUILD := $(POST_BUILD_DIR)/.make
 EFI_ESP_OUT := $(POST_BUILD_DIR)/esp
@@ -95,9 +95,6 @@ debug-x86_64: $(OVMF_DEST) $(EFI_LOADER_OUT) $(INSTALLED_KERNEL)
 		-gdb tcp::9120 \
 		-S \
 		-d int,cpu_reset,unimp
-
-.PHONY: debug-x86_64
-debug-x86_64: | $(OS_KERNEL_OUT) start-x86_64
 
 EFI_ROOT_DIR ?= /efi
 EFI_INSTALL_DIR ?= $(EFI_ROOT_DIR)/EFI/os

@@ -1,5 +1,6 @@
 [workspace]
 members = ["kernel/boot/protocol"]
+resolver = "2"
 
 [workspace.package]
 version = "0.0.0"
@@ -13,6 +14,7 @@ kernel-hw-io.path = "kernel/hw/io"
 kernel-hw-io-serial.path = "kernel/hw/io/serial"
 x86_64 = "=0.15.1"
 limine = "=0.2.0"
+spin = "=0.9.8"
 
 [profile.dev]
 panic = "abort"

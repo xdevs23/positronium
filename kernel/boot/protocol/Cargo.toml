@@ -3,13 +3,16 @@ name = "kernel-boot-protocol"
 version.workspace = true
 edition.workspace = true
 
-[lib]
-crate-type = ["rlib"]
-path = "lib.rs"
+[[bin]]
+name = "kernel"
+path = "main.rs"
 
 [dependencies]
 kernel.workspace = true
+kernel-hw-io-serial.workspace = true
+kernel-hw-io.workspace = true
 
 [target.'cfg(target_arch = "x86_64")'.dependencies]
 x86_64.workspace = true
 limine.workspace = true
+spin.workspace = true
