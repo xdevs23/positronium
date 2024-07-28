@@ -1,7 +1,9 @@
-
 use x86_64::instructions;
 
 use crate::Cpu;
+
+mod gdt;
+mod early_alloc;
 
 // The naming used here is simply because X8664Cpu is super awkward
 pub struct Amd64Cpu {}

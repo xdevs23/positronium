@@ -15,6 +15,7 @@ kernel-hw-io-serial.path = "kernel/hw/io/serial"
 x86_64 = "=0.15.1"
 limine = "=0.2.0"
 spin = "=0.9.8"
+linked_list_allocator = "=0.10.5"
 
 [profile.dev]
 panic = "abort"
