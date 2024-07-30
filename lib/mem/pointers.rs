@@ -8,7 +8,7 @@ pub fn ptr_after_end_of<T, R>(value: &T) -> *const R {
     (value as *const T as usize + size_of::<T>()) as *const R
 }
 
-pub fn usize_after_end_of<T>(value: &T) -> usize {
+pub fn addr_after_end_of<T>(value: &T) -> usize {
     (value as *const T as usize + size_of::<T>()) as usize
 }
 
@@ -19,17 +19,17 @@ pub fn usize_after_end_of<T>(value: &T) -> usize {
 // [*fghabcd|efghabcd|efgh----]
 //  ↑ this pointer is returned
 pub unsafe fn align_pointer_explicit<T>(
-    usize: usize,
+    addr: usize,
     size: usize,
     align_to: usize,
 ) -> Box<T> {
-    let usize_deviation = usize % align_to;
+    let addr_deviation = usize % align_to;
     let mut boxed = vec![0_u8; size].into_boxed_slice();
-    let orig_bytes = slice_from_raw_parts(align_down(usize, align_to) as *const u8, size + align_to - usize_deviation);
+    let orig_bytes = slice_from_raw_parts(align_down(usize, align_to) as *const u8, size + align_to - addr_deviation);
     // SAFETY: We ensure that we only access the bytes we should by starting
-    //         from usize_deviation
+    //         from addr_deviation
     let orig_bytes = orig_bytes.as_ref().unwrap();
-    boxed.copy_from_slice(&orig_bytes[usize_deviation..(usize_deviation + size)]);
+    boxed.copy_from_slice(&orig_bytes[addr_deviation..(addr_deviation + size)]);
 
     return Box::from_raw(Box::into_raw(boxed) as *mut T);
 }
