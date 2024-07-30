@@ -12,6 +12,8 @@ path = "lib.rs"
 [target.'cfg(target_arch = "x86_64")'.dependencies]
 x86_64.workspace = true
 linked_list_allocator = { workspace = true, features = ["alloc_ref", "use_spin"]}
+kernel-hw-io-serial = { workspace = true }
+kernel-hw-io = { workspace = true }
 
 [unstable]
 build-std = ["alloc"]

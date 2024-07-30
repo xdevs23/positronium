@@ -8,3 +8,7 @@ mod arch;
 pub fn create_serial() -> impl SerialController {
     arch::Serial::new_init()
 }
+
+pub unsafe fn get_serial() -> impl SerialController {
+    unsafe { arch::Serial::new_uninitialized() }
+}

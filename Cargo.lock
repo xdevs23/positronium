@@ -45,6 +45,8 @@ dependencies = [
 name = "kernel-hw-cpu"
 version = "0.0.0"
 dependencies = [
+ "kernel-hw-io",
+ "kernel-hw-io-serial",
  "linked_list_allocator",
  "x86_64",
 ]

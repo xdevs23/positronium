@@ -76,6 +76,10 @@ impl SerialController for Serial {
         new
     }
 
+    unsafe fn new_uninitialized() -> Self {
+        Self { did_init: true }
+    }
+
     fn write_string(&self, str: &str) -> Result<(), ()> {
         for c in str.as_bytes().iter() {
             Self::write(*c)?

@@ -17,4 +17,5 @@ pub trait SerialController {
     fn new_init() -> Self;
     fn init(&self) -> Result<(), ()>;
     fn write_string(&self, str: &str) -> Result<(), ()>;
+    unsafe fn new_uninitialized() -> Self;
 }

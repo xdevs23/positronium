@@ -1,11 +1,11 @@
 #![no_std]
 
-use kernel_hw_cpu::{create_cpu, Cpu};
+use kernel_hw_cpu::{current_cpu, initialize_cpu, Cpu};
 use kernel_hw_io::SerialController;
 use kernel_hw_io_serial::create_serial;
 
 pub fn kernel_main() -> ! {
-    let cpu = create_cpu();
+    let cpu = initialize_cpu();
 
     let serial = create_serial();
     _ = serial.write_string("\nPositronium Kernel\n");
@@ -17,5 +17,5 @@ pub fn kernel_main() -> ! {
 fn rust_panic(_info: &core::panic::PanicInfo) -> ! {
     let serial = create_serial();
     _ = serial.write_string("Panic\n");
-    create_cpu().halt_execution()
+    current_cpu().halt_execution()
 }
