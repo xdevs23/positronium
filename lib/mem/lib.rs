@@ -1,5 +1,6 @@
 #![no_std]
 
-mod pointers;
-mod string;
-mod types;
+extern crate alloc;
+
+pub mod pointers;
+pub mod string;

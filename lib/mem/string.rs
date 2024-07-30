@@ -1,6 +1,6 @@
 use core::mem::size_of;
 
-use core::{ptr::slice_from_raw_parts, mem::size_of};
+use core::ptr::slice_from_raw_parts;
 
 use alloc::{boxed::Box, string::String, format};
 

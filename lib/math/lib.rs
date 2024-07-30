@@ -1,4 +1,4 @@
 #![no_std]
 
-mod align;
-mod sizes;
+pub mod align;
+pub mod sizes;

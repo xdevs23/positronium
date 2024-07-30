@@ -1,4 +1,4 @@
-use core::{alloc::Allocator, ptr::null_mut};
+use core::ptr::null_mut;
 
 use linked_list_allocator::LockedHeap;
 

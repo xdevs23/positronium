@@ -8,4 +8,5 @@ crate-type = ["rlib"]
 path = "lib.rs"
 
 [dependencies]
+lib-math.workspace = true
 

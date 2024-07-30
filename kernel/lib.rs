@@ -8,8 +8,6 @@ use kernel_hw_cpu::{current_cpu, initialize_cpu, Cpu};
 use kernel_hw_io_serial::create_serial;
 use kernel_logging::{apply_kernel_log_writer, CommonLogger, KernelLogWriter, Logger};
 
-mod log;
-
 pub fn kernel_main() -> ! {
     apply_kernel_log_writer(KernelLogWriter::new(create_serial()));
 
