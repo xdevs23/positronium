@@ -1,0 +1,12 @@
+[package]
+name = "lib-sync"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["rlib"]
+path = "lib.rs"
+
+[dependencies]
+spin.workspace = true
+kernel-hw-cpu.workspace = true

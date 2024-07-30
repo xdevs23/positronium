@@ -27,6 +27,9 @@ dependencies = [
  "kernel-hw-cpu",
  "kernel-hw-io",
  "kernel-hw-io-serial",
+ "kernel-logging",
+ "lib-sync",
+ "spin",
 ]
 
 [[package]]
@@ -45,8 +48,7 @@ dependencies = [
 name = "kernel-hw-cpu"
 version = "0.0.0"
 dependencies = [
- "kernel-hw-io",
- "kernel-hw-io-serial",
+ "kernel-logging",
  "linked_list_allocator",
  "x86_64",
 ]
@@ -61,6 +63,23 @@ version = "0.0.0"
 dependencies = [
  "kernel-hw-io",
  "x86_64",
+]
+
+[[package]]
+name = "kernel-logging"
+version = "0.0.0"
+dependencies = [
+ "kernel-hw-io",
+ "kernel-hw-io-serial",
+ "spin",
+]
+
+[[package]]
+name = "lib-sync"
+version = "0.0.0"
+dependencies = [
+ "kernel-hw-cpu",
+ "spin",
 ]
 
 [[package]]

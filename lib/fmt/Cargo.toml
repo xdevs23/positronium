@@ -1,0 +1,11 @@
+[package]
+name = "lib-fmt"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["rlib"]
+path = "lib.rs"
+
+[dependencies]
+

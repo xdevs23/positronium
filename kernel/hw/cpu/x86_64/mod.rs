@@ -1,4 +1,4 @@
-use core::{error::Error, fmt::{self, Display}};
+use core::{arch::x86_64::_mm_pause, error::Error, fmt::{self, Display}};
 
 use gdt::Gdt;
 use x86_64::instructions;
@@ -42,6 +42,11 @@ impl Cpu for Amd64Cpu {
         // TODO: do some CPUID magic or core-local variables or something
         // For now just create a new instance, no strings attached
         Ok::<_, CpuInitError>(Self {})
+    }
+
+    #[inline(always)]
+    fn spin_pause() {
+        unsafe { _mm_pause() }
     }
 }
 

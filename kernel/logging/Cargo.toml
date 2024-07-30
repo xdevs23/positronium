@@ -1,5 +1,5 @@
 [package]
-name = "kernel"
+name = "kernel-logging"
 version.workspace = true
 edition.workspace = true
 
@@ -8,9 +8,7 @@ crate-type = ["rlib"]
 path = "lib.rs"
 
 [dependencies]
-kernel-hw-cpu.workspace = true
+spin.workspace = true
 kernel-hw-io-serial.workspace = true
 kernel-hw-io.workspace = true
-kernel-logging.workspace = true
-spin.workspace = true
-lib-sync.workspace = true
+

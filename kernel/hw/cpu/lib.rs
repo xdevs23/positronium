@@ -11,6 +11,10 @@ pub trait Cpu {
     fn wait_for_interrupt(&self);
     fn initialize() -> Result<impl Cpu, impl Error>;
     fn current_cpu() -> Result<impl Cpu, impl Error>;
+
+    /// If supported, executes the pause instruction
+    #[inline(always)]
+    fn spin_pause() {}
 }
 
 pub fn initialize_cpu() -> impl Cpu {
@@ -20,3 +24,5 @@ pub fn initialize_cpu() -> impl Cpu {
 pub fn current_cpu() -> impl Cpu {
     arch::ArchCpu::current_cpu().expect("could not get current CPU")
 }
+
+pub type ArchCpu = arch::ArchCpu;

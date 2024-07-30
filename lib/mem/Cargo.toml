@@ -1,0 +1,11 @@
+[package]
+name = "lib-mem"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["rlib"]
+path = "lib.rs"
+
+[dependencies]
+

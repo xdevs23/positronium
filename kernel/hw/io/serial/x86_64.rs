@@ -52,7 +52,7 @@ impl IOPortRead for LineStatePort {
     }
 }
 
-pub(crate) struct Serial {
+pub struct Serial {
     did_init: bool,
 }
 
